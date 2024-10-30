@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^1.2.2
   whisk_and_serve_core:
     path: ../whisk_and_serve_core
     

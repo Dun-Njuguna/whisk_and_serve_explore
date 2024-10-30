@@ -1,22 +1,26 @@
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:whisk_and_serve_core/api/network_client.dart';
+import 'package:whisk_and_serve_core/api/network_exception.dart';
 
 import 'package:whisk_and_serve_explore/data/models/category_model.dart';
 
 class RecipeRemoteDataSource {
-  final String _baseUrl =
-      'https://www.themealdb.com/api/json/v1/1/categories.php';
+  final NetworkClient client;
+
+  RecipeRemoteDataSource({required this.client});
 
   Future<List<CategoryModel>> getRecipeCategories() async {
-    final response = await http.get(Uri.parse(_baseUrl));
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
+    try {
+    final response = await client.getRequest('/categories.php'); 
+    final data = response.data;
+    if (data['categories'] != null) {
       return (data['categories'] as List)
           .map((json) => CategoryModel.fromJson(json))
           .toList();
     } else {
-      throw Exception('Failed to fetch categories');
+      throw NetworkException(message: 'Categories not found');
+    }
+    } on NetworkException catch (_) {
+      rethrow;
     }
   }
 }
