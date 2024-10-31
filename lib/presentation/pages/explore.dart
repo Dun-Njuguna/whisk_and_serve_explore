@@ -22,6 +22,7 @@ class ExploreState extends State<Explore> {
     return Scaffold(
       body: createBlocBuilder<RecipeCategoriesBloc, RecipeCategoriesState>(
         builder: (context, state) {
+                      print("object.............. $state");
           if (state is RecipeCategoriesLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is RecipeCategoriesLoaded) {
@@ -44,6 +45,10 @@ class ExploreState extends State<Explore> {
               },
             );
           } else if (state is RecipeCategoriesError) {
+            SnackbarHandler(context).show(GenericMessage(
+              message: state.message,
+              type: MessageType.error,
+            ));
             return Center(child: Text(state.message));
           }
           return const Center(child: Text("Press refresh to load categories"));
