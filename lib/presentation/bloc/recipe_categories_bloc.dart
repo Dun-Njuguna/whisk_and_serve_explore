@@ -24,13 +24,9 @@ class RecipeCategoriesBloc
     FetchRecipeCategories event,
     StateEmitter<RecipeCategoriesState> emitter,
   ) async {
-            print("event.....  ${event}");
     await emitter.emit(RecipeCategoriesLoading());
     try {
       final categories = await getRecipeCategories.call();
-      for (var item in categories) {
-        print("categories.....  ${item}");
-      }
       await emitter.emit(RecipeCategoriesLoaded(categories: categories));
     } catch (e) {
       await emitter.emit(RecipeCategoriesError(message: e.toString()));
