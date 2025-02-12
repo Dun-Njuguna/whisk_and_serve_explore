@@ -13,24 +13,32 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Stack(
+        fit: StackFit.expand,
         children: [
           Image.network(
             category.thumbUrl,
-            width: 120,
-            height: 120,
-            fit: BoxFit.contain,
+            fit: BoxFit.cover,
           ),
-          const SizedBox(height: 8),
-          Text(
-            category.name,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
-            textAlign: TextAlign.center,
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 8,
+              ),
+              color: Colors.white.withValues(alpha: 0.65),
+              child: Text(
+                category.name,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
         ],
       ),

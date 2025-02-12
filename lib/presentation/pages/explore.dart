@@ -10,15 +10,16 @@ class Explore extends StatefulWidget {
   ExploreState createState() => ExploreState();
 }
 
-class ExploreState extends State<Explore> with AutomaticKeepAliveClientMixin<Explore> {
-
+class ExploreState extends State<Explore>
+    with AutomaticKeepAliveClientMixin<Explore> {
   @override
   bool get wantKeepAlive => true;
-  
+
   @override
   void initState() {
     super.initState();
-    final state = getCurrentState<RecipeCategoriesBloc, RecipeCategoriesState>(context);
+    final state =
+        getCurrentState<RecipeCategoriesBloc, RecipeCategoriesState>(context);
 
     if (state is RecipeCategoriesInitial) {
       addBlocEvent<RecipeCategoriesBloc>(context, FetchRecipeCategories());
@@ -58,6 +59,7 @@ class ExploreState extends State<Explore> with AutomaticKeepAliveClientMixin<Exp
             crossAxisCount: columns,
             crossAxisSpacing: 8,
             mainAxisSpacing: 4,
+            childAspectRatio: 0.8,
           ),
           padding: const EdgeInsets.all(8.0),
           itemBuilder: (context, index) {
