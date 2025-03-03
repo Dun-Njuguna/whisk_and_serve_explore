@@ -3,7 +3,7 @@ import 'package:whisk_and_serve_core/api/network_exception.dart';
 import 'package:whisk_and_serve_core/coms/generic_message.dart';
 import 'package:whisk_and_serve_core/coms/message_type.dart';
 
-import 'package:whisk_and_serve_explore/data/models/category_model.dart';
+import 'package:whisk_and_serve_explore/features/categories/data/models/category_model.dart';
 
 class RecipeRemoteDataSource {
   final NetworkClient client;

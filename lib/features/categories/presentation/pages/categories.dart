@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:whisk_and_serve_core/whisk_and_serve_core.dart';
-import 'package:whisk_and_serve_explore/presentation/bloc/recipe_categories_bloc.dart';
-import 'package:whisk_and_serve_explore/presentation/widgets/category_item.dart';
+import 'package:whisk_and_serve_core/widgets/base_scaffold.dart';
+import 'package:whisk_and_serve_explore/features/categories/presentation/bloc/recipe_categories_bloc.dart';
+import 'package:whisk_and_serve_explore/core/widgets/custom_grid_view.dart';
 
 class Explore extends StatefulWidget {
   const Explore({super.key});
@@ -30,13 +31,13 @@ class ExploreState extends State<Explore>
   Widget build(BuildContext context) {
     super.build(context);
 
-    return Scaffold(
-      body: createBlocBuilder<RecipeCategoriesBloc, RecipeCategoriesState>(
+    return BaseScaffold(
+      child: createBlocBuilder<RecipeCategoriesBloc, RecipeCategoriesState>(
         builder: (context, state) {
           if (state is RecipeCategoriesLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is RecipeCategoriesLoaded) {
-            return _buildGridView(state);
+            return gridViewItem(state);
           } else if (state is RecipeCategoriesError) {
             _showErrorSnackbar(state.message);
             return Center(child: Text(state.message));
@@ -45,29 +46,6 @@ class ExploreState extends State<Explore>
           return const Center(child: Text("Press refresh to load categories"));
         },
       ),
-    );
-  }
-
-  Widget _buildGridView(RecipeCategoriesLoaded state) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        int columns = getColumnCount(screenWidth: constraints.maxWidth);
-        return GridView.builder(
-          key: const PageStorageKey<String>('exploreGrid'),
-          itemCount: state.categories.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: columns,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 4,
-            childAspectRatio: 0.8,
-          ),
-          padding: const EdgeInsets.all(8.0),
-          itemBuilder: (context, index) {
-            final category = state.categories[index];
-            return CategoryItem(category: category);
-          },
-        );
-      },
     );
   }
 

@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:whisk_and_serve_core/entities/category.dart';
 import 'package:whisk_and_serve_core/widgets/app_card.dart';
 
-class CategoryItem extends StatelessWidget {
-  const CategoryItem({
+class ListItem {
+  final String title;
+  final String thumbUrl;
+
+  const ListItem({
+    required this.title,
+    required this.thumbUrl,
+  });
+}
+
+class ListItemCard extends StatelessWidget {
+  const ListItemCard({
     super.key,
-    required this.category,
+    required this.item,
   });
 
-  final Category category;
+  final ListItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +26,7 @@ class CategoryItem extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.network(
-            category.thumbUrl,
+            item.thumbUrl,
             fit: BoxFit.cover,
           ),
           Positioned(
@@ -29,13 +38,10 @@ class CategoryItem extends StatelessWidget {
                 vertical: 12,
                 horizontal: 8,
               ),
-              color: Colors.white.withValues(alpha: 0.65),
+              color: Colors.white.withValues(alpha: 0.85),
               child: Text(
-                category.name,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                item.title,
+                style: Theme.of(context).textTheme.bodySmall,
                 textAlign: TextAlign.center,
               ),
             ),

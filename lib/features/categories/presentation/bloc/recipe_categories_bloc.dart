@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whisk_and_serve_core/bloc/bloc_helpers.dart';
-import 'package:whisk_and_serve_core/entities/category.dart';
-import 'package:whisk_and_serve_explore/domain/use_cases/get_recipe_categories.dart';
+import 'package:whisk_and_serve_core/entities/explore/category.dart';
+import 'package:whisk_and_serve_explore/features/categories/domain/use_cases/get_recipe_categories.dart';
 
 part 'recipe_categories_event.dart';
 part 'recipe_categories_state.dart';

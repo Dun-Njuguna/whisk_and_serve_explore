@@ -1,4 +1,4 @@
-import 'package:whisk_and_serve_core/entities/category.dart';
+import 'package:whisk_and_serve_core/entities/explore/category.dart';
 
 import '../repositories/recipe_repository_interface.dart';
 
