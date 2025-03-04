@@ -44,7 +44,7 @@ class _MealsState extends State<Meals> {
           if (state is MealsLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is MealsLoaded) {
-            return staggeredMealsGrid(state);
+            return staggeredMealsGrid(state, categoryName!);
           } else if (state is MealsError) {
             _showErrorSnackbar(state.message);
             return Center(child: Text(state.message));
@@ -63,7 +63,7 @@ class _MealsState extends State<Meals> {
   }
 }
 
-Widget staggeredMealsGrid(MealsLoaded state) {
+Widget staggeredMealsGrid(MealsLoaded state, String categoryName) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: MasonryGridView.count(
@@ -77,7 +77,8 @@ Widget staggeredMealsGrid(MealsLoaded state) {
 
         return GestureDetector(
           onTap: () {
-            NavigationHelper.navigateTo(context, '/meal/${meal.id}');
+            NavigationHelper.navigateTo(
+                context, '/${AppRoutes.meals}/$categoryName/${meal.mealId}');
           },
           child: SizedBox(
             height: index.isEven ? 220 : 170,

@@ -22,7 +22,7 @@ Widget gridViewItem(RecipeCategoriesLoaded state) {
           return GestureDetector(
             onTap: () {
               NavigationHelper.navigateTo(
-                  context, '/${AppRoutes.mealsPage}/${category.name}');
+                  context, '/${AppRoutes.meals}/${category.name}');
             },
             child: ListItemCard(
               item: ListItem(
