@@ -38,10 +38,15 @@ class ListItemCard extends StatelessWidget {
                 vertical: 12,
                 horizontal: 8,
               ),
-              color: Colors.white.withValues(alpha: 0.85),
+              color: Theme.of(context).colorScheme.onPrimary.withAlpha(
+                    (0.85 * 255).toInt(),
+                  ),
               child: Text(
                 item.title,
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(color: Theme.of(context).colorScheme.primary),
                 textAlign: TextAlign.center,
               ),
             ),

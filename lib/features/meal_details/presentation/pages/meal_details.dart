@@ -37,6 +37,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
+      title: "",
       child: createBlocBuilder<MealDetailsBloc, MealDetailsState>(
         builder: (context, state) {
           if (state is MealDetailsLoading) {
