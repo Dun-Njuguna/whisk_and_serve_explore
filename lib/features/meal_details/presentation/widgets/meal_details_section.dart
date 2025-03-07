@@ -73,15 +73,16 @@ class MealDetailsSectionState extends State<MealDetailsSection>
             spacing: 8,
             runSpacing: 4,
             children: [
-              buildChip('Category: ${widget.meal.category}'),
-              buildChip('Cuisine: ${widget.meal.area}'),
+              buildChip(context, 'Category: ${widget.meal.category}'),
+              buildChip(context, 'Cuisine: ${widget.meal.area}'),
 
               // Add YouTube Chip if video exists
               if (widget.meal.youtube != null &&
                   widget.meal.youtube!.isNotEmpty)
                 GestureDetector(
                   onTap: _playVideo,
-                  child: buildChip('Watch Video', icon: Icons.play_circle_fill),
+                  child: buildChip(context, 'Watch Video',
+                      icon: Icons.play_circle_fill),
                 ),
             ],
           ),
